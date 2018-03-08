@@ -1,0 +1,30 @@
+{
+  "name": "generic-sensors-lite",
+  "version": "0.0.0",
+  "description": "Lightweight implementation of W3C spec, targeting constrained devices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzr/generic-sensors-lite.git"
+  },
+  "keywords": [
+    "sensor",
+    "sensors",
+    "w3c",
+    "generic",
+    "temperature",
+    "ambiant",
+    "light",
+    "illuminance.",
+    "iotjs-supported"
+  ],
+  "author": "Philippe Coval <philippe.coval@osg.samsung.com> (https://www.npmjs.com/~rzr)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rzr/generic-sensors-lite/issues"
+  },
+  "homepage": "https://github.com/rzr/generic-sensors-lite#readme"
+}
