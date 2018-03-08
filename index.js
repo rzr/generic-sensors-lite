@@ -17,3 +17,5 @@
 
 'use strict';
 
+module.exports.AmbientLight = require('./ambientlight');
+
