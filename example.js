@@ -24,3 +24,16 @@ try {
   GenericSensors = require('./index.js');
 }
 
+var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
+ambientlight.onreading = function() {
+    console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
+};
+ambientlight.onerror = function(err) {
+  console.log('error: ' + ambientlight.type + ': ' + err);
+  ambientlight.stop();
+}
+ambientlight.onactivate = function() {
+  setTimeout(function(){ambientlight.stop();} , 3000);
+}
+ambientlight.start();
+
