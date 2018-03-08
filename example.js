@@ -37,3 +37,16 @@ ambientlight.onactivate = function() {
 }
 ambientlight.start();
 
+var temperature = new GenericSensors.Temperature({ frequency: 2 });
+temperature.onreading = function() {
+  console.log("log: " + temperature.type + ": " + temperature.celsius);
+};
+temperature.onerror = function(err) {
+  console.log('error: ' + temperature.type + ': ' + err);
+  temperature.stop();
+}
+temperature.onactivate = function() {
+  setTimeout(function(){temperature.stop();} , 5000);
+}
+temperature.start();
+
