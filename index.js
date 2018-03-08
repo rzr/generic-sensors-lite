@@ -18,4 +18,5 @@
 'use strict';
 
 module.exports.AmbientLight = require('./ambientlight');
+module.exports.Temperature = require('./temperature');
 
