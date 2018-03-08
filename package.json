@@ -11,7 +11,8 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
-    "bh1750": "0.0.3"
+    "bh1750": "0.0.3",
+    "bmp085": "0.4.0"
   },
   "keywords": [
     "sensor",
