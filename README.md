@@ -9,9 +9,9 @@ Several JS engines will be supported.
 
 Following sensors can be plugged on pins of your favorite single board computer:
 
-* I2C
- * BH1650: for mesuring illuminance
- * BMP085: for mesuring temperature, or any compatible sensor (ie: BMP180)
+* I2C:
+  * BH1750: for mesuring illuminance
+  * BMP085: for mesuring temperature, or any compatible sensor (ie: BMP180)
 
 Privilleged access to hardware resources is also requiered too (setup or use sudo).
 
@@ -56,3 +56,6 @@ log: ambientlight: 15
 ## RESOURCES ##
 
 * https://w3c.github.io/sensors/
+* https://www.npmjs.com/~rzr
+* https://www.npmjs.com/package/bh1750
+* https://www.npmjs.com/package/bmp085
