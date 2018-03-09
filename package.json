@@ -4,7 +4,7 @@
   "description": "Lightweight implementation of W3C spec, targeting constrained devices",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_PATH=. node example"
   },
   "repository": {
     "type": "git",
