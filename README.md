@@ -56,6 +56,7 @@ log: ambientlight: 15
 ## RESOURCES ##
 
 * https://w3c.github.io/sensors/
+* https://github.com/Samsung/iotjs/
 * https://www.npmjs.com/~rzr
 * https://www.npmjs.com/package/bh1750
 * https://www.npmjs.com/package/bmp085
