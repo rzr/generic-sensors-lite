@@ -42,12 +42,6 @@ function AmbientLight(options) {
   this.options = options || { frequency : 1 };
   this.options.controller = options.controller || 'bh1750';
   if (this.options.controller === 'bh1750') {
-    options.sensor = options.sensor || {
-      address: 0x23,
-      device: '/dev/i2c-1',
-      command: 0x10, //TODO
-      length: 2 //TODO
-    };
     this.sensor = new BH1750(this.options.sensor);
   } else {
     throw new Error("TODO: unsupported controller:" + self.options.controller);
@@ -61,8 +55,8 @@ AmbientLight.prototype.update = function update() {
   var self = this;
   try {
     self.hasReading = false;
-    self.sensor.readLight(function (data) {
-      if (!data) {
+    self.sensor.readLight(function (err, data) {
+      if (err || !data) {
         return self.onerror(data);
       } else {
         self.timestamp = new Date();
