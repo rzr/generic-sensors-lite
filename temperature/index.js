@@ -41,12 +41,6 @@ function TemperatureSensor(options) {
   this.options = options || { frequency : 1 };
   this.options.controller = options.controller || 'bmp085';
   if ((this.options.controller === 'bmp085') || (this.options.controller === 'bmp180')) {
-    this.options.sensor = options.sensor || { //TODO
-      device: '/dev/i2c-1',
-      address: 0x77,
-      mode: 0,
-      units: 'metric'
-    };
     this.sensor = new BMP085(this.options.sensor);
   } else {
     throw new Error("TODO: unsupported controller:" + this.options.controller);
@@ -60,8 +54,8 @@ TemperatureSensor.prototype.update = function update() {
   var self = this;
   try {
     self.hasReading = false;
-    self.sensor.read(function (data) {
-      if (!data) {
+    self.sensor.read(function (err, data) {
+      if (err || !data) {
         return self.onerror(err);
       } else {
         self.timestamp = new Date();
@@ -86,12 +80,14 @@ TemperatureSensor.prototype.start = function start() {
   var self = this;
   self.state = 'activating';
   try {
-    if (!self.interval) {
-      self.interval = setInterval(function() { self.update(); },
-                                  1000. / self.options.frequency);
-      self.onactivate();
-      self.state = 'activated';
-    }
+    self.sensor.calibrate(function(err) {
+      if (!self.interval) {
+        self.interval = setInterval(function() { self.update(); },
+                                    1000. / self.options.frequency);
+        self.onactivate();
+        self.state = 'activated';
+      }
+    });
   } catch(err) {
     self.onerror(err);
   }
