@@ -34,6 +34,25 @@ log: ambientlight: 51
 ```
 
 
+### USING IOT.JS ###
+
+```
+mkdir -p iotjs_modules
+cd iotjs_modules
+git clone https://github.com/rzr/async-lite
+git clone https://github.com/TizenTeam/bh1750 -b sandbox/rzr/devel/iotjs/master
+git clone https://github.com/TizenTeam/bmp085 -b sandbox/rzr/devel/iotjs/master
+cd -
+IOTJS_EXTRA_MODULE_PATH=iotjs_modules iotjs example
+log: temperature: 27.8
+log: ambientlight: 30
+log: temperature: 27.8
+log: temperature: 27.7
+log: ambientlight: 15
+(...)
+```
+
+
 ## RESOURCES ##
 
 * https://w3c.github.io/sensors/
