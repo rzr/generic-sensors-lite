@@ -22,7 +22,7 @@ Privilleged access to hardware resources is also requiered too (setup or use sud
 git clone --recursive https://github.com/rzr/generic-sensors-lite
 cd generic-sensors-lite
 npm install
-npm test
+npm test all
 (...)
 log: temperature: 28.1
 log: ambientlight: 51
