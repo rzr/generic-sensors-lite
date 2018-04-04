@@ -24,29 +24,38 @@ try {
   GenericSensors = require('./index.js');
 }
 
-var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
-ambientlight.onreading = function() {
-    console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
-};
-ambientlight.onerror = function(err) {
-  console.log('error: ' + ambientlight.type + ': ' + err);
-  ambientlight.stop();
+for (let i=0; i < process.argv.length; i++) {
+  if ((process.argv[i] == "ambiantlight") || (process.argv[i] == "all")) {
+    var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
+    ambientlight.onreading = function() {
+      console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
+    };
+    ambientlight.onerror = function(err) {
+      console.log('error: ' + ambientlight.type + ': ' + err);
+      ambientlight.stop();
+    }
+    ambientlight.onactivate = function() {
+      setTimeout(function(){ambientlight.stop();} , 3000);
+    }
+    ambientlight.start();
+    break;
+  }
 }
-ambientlight.onactivate = function() {
-  setTimeout(function(){ambientlight.stop();} , 3000);
-}
-ambientlight.start();
 
-var temperature = new GenericSensors.Temperature({ frequency: 2 });
-temperature.onreading = function() {
-  console.log("log: " + temperature.type + ": " + temperature.celsius);
-};
-temperature.onerror = function(err) {
-  console.log('error: ' + temperature.type + ': ' + err);
-  temperature.stop();
+for (let i=0; i < process.argv.length; i++) {
+  if ((process.argv[i] == "temperature") || (process.argv[i] == "all")) {
+    var temperature = new GenericSensors.Temperature({ frequency: 2 });
+    temperature.onreading = function() {
+      console.log("log: " + temperature.type + ": " + temperature.celsius);
+    };
+    temperature.onerror = function(err) {
+      console.log('error: ' + temperature.type + ': ' + err);
+      temperature.stop();
+    }
+    temperature.onactivate = function() {
+      setTimeout(function(){temperature.stop();} , 5000);
+    }
+    temperature.start();
+    break;
+  }
 }
-temperature.onactivate = function() {
-  setTimeout(function(){temperature.stop();} , 5000);
-}
-temperature.start();
-
