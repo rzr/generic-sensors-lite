@@ -17,7 +17,7 @@
 
 'use strict';
 
-var BMP085 = require('bmp085');
+var BMP085 = require('bmp085-sensor');
 
 /**
  * Class inspired by W3C's generic-sensor
@@ -60,8 +60,8 @@ TemperatureSensor.prototype.update = function update() {
   var self = this;
   try {
     self.hasReading = false;
-    self.sensor.read(function (data) {
-      if (!data) {
+    self.sensor.read(function (err, data) {
+      if (err || !data) {
         return self.onerror(err);
       } else {
         self.timestamp = new Date();
