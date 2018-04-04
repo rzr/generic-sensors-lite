@@ -54,8 +54,8 @@ TemperatureSensor.prototype.update = function update() {
   var self = this;
   try {
     self.hasReading = false;
-    self.sensor.read(function (err, data) {
-      if (err || !data) {
+    self.sensor.read(function (data) {
+      if (!data) {
         return self.onerror(err);
       } else {
         self.timestamp = new Date();
@@ -80,14 +80,16 @@ TemperatureSensor.prototype.start = function start() {
   var self = this;
   self.state = 'activating';
   try {
-    self.sensor.calibrate(function(err) {
+    // workaround design issue with current npm version
+    self.sensor.userCallback = function(err) {
       if (!self.interval) {
         self.interval = setInterval(function() { self.update(); },
                                     1000. / self.options.frequency);
         self.onactivate();
         self.state = 'activated';
       }
-    });
+    };
+    self.sensor.calibrate(self.sensor.userCallback);
   } catch(err) {
     self.onerror(err);
   }
