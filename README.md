@@ -36,4 +36,6 @@ log: ambientlight: 51
 
 ## RESOURCES ##
 
+* https://www.npmjs.com/package/generic-sensors-lite
+* https://github.com/rzr/generic-sensors-lite
 * https://w3c.github.io/sensors/
