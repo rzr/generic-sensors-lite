@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "bh1750": "0.0.3",
-    "bmp085": "0.4.0"
+    "bmp085": "0.5.1"
   },
   "keywords": [
     "sensor",
