@@ -16,13 +16,7 @@
  */
 
 'use strict';
-
-var GenericSensors = null;
-try {
-  GenericSensors = require('generic-sensors-lite');
-} catch (err) {
-  GenericSensors = require('./index.js');
-}
+var GenericSensors = require('generic-sensors-lite');
 
 for (let i=0; i < process.argv.length; i++) {
   if ((process.argv[i] == "ambiantlight") || (process.argv[i] == "all")) {
