@@ -17,4 +17,6 @@
 
 'use strict';
 
-module.exports = require('./generic-sensors-lite.js');
+module.exports.AmbientLight = require('./ambientlight');
+module.exports.Temperature = require('./temperature');
+

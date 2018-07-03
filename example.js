@@ -16,16 +16,15 @@
  */
 
 'use strict';
-
-var GenericSensors = null;
+var GenericSensors; 
 try {
+  GenericSensors = require('./generic-sensors-lite');
+} catch(err) {
   GenericSensors = require('generic-sensors-lite');
-} catch (err) {
-  GenericSensors = require('./index.js');
 }
 
 for (let i=0; i < process.argv.length; i++) {
-  if ((process.argv[i] == "ambiantlight") || (process.argv[i] == "all")) {
+  if ((process.argv.length <= 2) || (process.argv[i] === "ambiantlight")) {
     var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
     ambientlight.onreading = function() {
       console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
@@ -43,7 +42,7 @@ for (let i=0; i < process.argv.length; i++) {
 }
 
 for (let i=0; i < process.argv.length; i++) {
-  if ((process.argv[i] == "temperature") || (process.argv[i] == "all")) {
+  if ((process.argv.length <= 2) || (process.argv[i] === "temperature")) {
     var temperature = new GenericSensors.Temperature({ frequency: 2 });
     temperature.onreading = function() {
       console.log("log: " + temperature.type + ": " + temperature.celsius);
