@@ -25,14 +25,15 @@ var BMP085 = require('bmp085');
  **/
 function TemperatureSensor(options) {
   this.state = 'construct';
+
+  this.type = 'temperature';
+  this.celsius = 0;
+
   this.onerror = function(err) {
     throw new Error(err);
   };
   this.onactivate = function() {};
   this.onreading = function() {};
-
-  this.type = 'temperature';
-  this.celsius = 0;
 
   this.level = 'low';
   this.activated = false;
@@ -41,12 +42,6 @@ function TemperatureSensor(options) {
   this.options = options || { frequency : 1 };
   this.options.controller = options.controller || 'bmp085';
   if ((this.options.controller === 'bmp085') || (this.options.controller === 'bmp180')) {
-    this.options.sensor = options.sensor || { //TODO
-      device: '/dev/i2c-1',
-      address: 0x77,
-      mode: 0,
-      units: 'metric'
-    };
     this.sensor = new BMP085(this.options.sensor);
   } else {
     throw new Error("TODO: unsupported controller:" + this.options.controller);
@@ -61,8 +56,8 @@ TemperatureSensor.prototype.update = function update() {
   try {
     self.hasReading = false;
     self.sensor.read(function (data) {
-      if (!data) {
-        return self.onerror(err);
+      if ((data === null) || (typeof data === 'undefined')) {
+        return self.onerror("Invalid data");
       } else {
         self.timestamp = new Date();
         self.celsius = Number(data.temperature);
