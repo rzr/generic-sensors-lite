@@ -69,5 +69,6 @@ log: ambientlight: 51
 * https://w3c.github.io/sensors/
 
 
-## License
+## LICENCE: ##
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite?ref=badge_large)
