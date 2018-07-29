@@ -38,8 +38,9 @@ ADD . /usr/local/${project}/${project}
 WORKDIR /usr/local/${project}/${project}
 RUN echo "#log: ${project}: Preparing sources" \
   && set -x \
+  && node --version \
   && npm install \
-  || cat /usr/local/node-sqlite3/node-sqlite3/npm-debug.log \
+  || cat npm-debug.log \
   && npm install \
   && sync
 
