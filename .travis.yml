@@ -1,0 +1,9 @@
+sudo: required
+language: node_js
+dist: trusty
+
+services:
+  docker
+
+script:
+  - docker build .
