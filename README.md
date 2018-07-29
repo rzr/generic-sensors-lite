@@ -8,6 +8,9 @@ Several JS engines will be supported.
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite?ref=badge_shield)
 
+[![Build Status](https://api.travis-ci.org/rzr/generic-sensors-lite.svg?branch=master)](https://travis-ci.org/rzr/generic-sensors-lite)
+
+
 ## USAGE: ##
 
 Following sensors can be plugged on pins of your favorite single board computer:
@@ -67,6 +70,8 @@ log: ambientlight: 51
 * https://www.npmjs.com/package/generic-sensors-lite
 * https://github.com/rzr/generic-sensors-lite
 * https://w3c.github.io/sensors/
+* https://github.com/rzr/mozilla-iot-generic-sensors-adapter
+* https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/
 
 
 ## LICENCE: ##
