@@ -16,6 +16,8 @@
  */
 
 'use strict';
+var console = require('console');
+
 var GenericSensors; 
 try {
   GenericSensors = require('./generic-sensors-lite');
