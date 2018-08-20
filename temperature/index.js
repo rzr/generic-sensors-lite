@@ -17,7 +17,7 @@
 
 'use strict';
 
-var BMP085 = require('bmp085');
+var BMP085 = require('bmp085-sensor');
 
 /**
  * Class inspired by W3C's generic-sensor
@@ -55,7 +55,10 @@ TemperatureSensor.prototype.update = function update() {
   var self = this;
   try {
     self.hasReading = false;
-    self.sensor.read(function (data) {
+    self.sensor.read(function (err, data) {
+      if (err) {
+        return self.onerror(err);
+      }
       if ((data === null) || (typeof data === 'undefined')) {
         return self.onerror("Invalid data");
       } else {
@@ -81,16 +84,21 @@ TemperatureSensor.prototype.start = function start() {
   var self = this;
   self.state = 'activating';
   try {
-    if (!self.interval) {
-      self.interval = setInterval(function() { self.update(); },
-                                  1000. / self.options.frequency);
-      self.onactivate();
-      self.state = 'activated';
-    }
+    self.sensor.calibrate(function (err /* , data*/) {
+      if (err) {
+        throw err;
+      }
+      if (!self.interval) {
+        self.interval = setInterval(function() { self.update(); },
+                                    1000. / self.options.frequency);
+        self.onactivate();
+        self.state = 'activated';
+      }
+    });
+    
   } catch(err) {
     self.onerror(err);
   }
 }
 
 module.exports = TemperatureSensor;
-
