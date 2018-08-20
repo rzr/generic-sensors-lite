@@ -25,7 +25,8 @@ try {
   GenericSensors = require('generic-sensors-lite');
 }
 
-for (let i=0; i < process.argv.length; i++) {
+var i=0;
+for (i=0; i < process.argv.length; i++) {
   if ((process.argv.length <= 2) || (process.argv[i] === "ambiantlight")) {
     var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
     ambientlight.onreading = function() {
@@ -43,7 +44,7 @@ for (let i=0; i < process.argv.length; i++) {
   }
 }
 
-for (let i=0; i < process.argv.length; i++) {
+for (i=0; i < process.argv.length; i++) {
   if ((process.argv.length <= 2) || (process.argv[i] === "temperature")) {
     var temperature = new GenericSensors.Temperature({ frequency: 2 });
     temperature.onreading = function() {
