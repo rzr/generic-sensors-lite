@@ -62,6 +62,31 @@ log: ambientlight: 51
 ```
 
 
+#### USING IOT.JS ####
+
+```
+mkdir -p iotjs-modules
+pushd iotjs-modules
+
+branch=sandbox/rzr/devel/iotjs/master
+url=https://github.com/tizenteam/bmp085-sensor
+git clone --recursive --depth 1 -b $branch $url
+
+branch=sandbox/rzr/devel/iotjs/master
+url=https://github.com/tizenteam/bh1750
+git clone --recursive --depth 1 -b $branch $url
+
+branch=master
+url=https://github.com/rzr/iotjs-async
+git clone --recursive --depth 1 -b $branch $url
+
+popd
+
+IOTJS_EXTRA_MODULE_PATH=.:iotjs-async:iotjs-modules:iotjs-modules/iotjs-async/ iotjs example
+
+```
+
+
 ### DEMO: ###
 
 [![web-of-things-agriculture-20180712rzr.webm](https://media.giphy.com/media/tKyrtKMc77iV9QUCrP/giphy.gif)](https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.webm "Video Demo")
