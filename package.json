@@ -4,7 +4,8 @@
   "description": "Lightweight implementation of W3C spec, targeting constrained devices",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=. node example"
+    "test": "NODE_PATH=. node example",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,6 @@
   },
   "homepage": "https://github.com/rzr/generic-sensors-lite#readme",
   "devDependencies": {
-    "eslint": "^5.3.0"
+    "eslint": "^5.4.0"
   }
 }
