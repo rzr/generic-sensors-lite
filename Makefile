@@ -33,8 +33,7 @@ main_src ?= example/index.js
 NODE_PATH := .:${NODE_PATH}
 export NODE_PATH
 
-IOTJS_EXTRA_MODULE_PATH=${CURDIR}/iotjs_modules/iotjs-async/iotjs
-export IOTJS_EXTRA_MODULE_PATH
+iotjs_modules_dir?=${CURDIR}/iotjs_modules
 
 bh1750_url?=https://github.com/miroRucka/bh1750
 iotjs-async_url?=https://github.com/rzr/iotjs-async
@@ -45,9 +44,6 @@ help:
 
 all: build
 	@echo "log: $@: $^"
-
-setup/%:
-	${@F}
 
 node_modules: package.json
 	npm install
@@ -139,24 +135,24 @@ lint/%: eslint
 lint: lint/${runtime}
 	@echo "log: $@: $^"
 
-iotjs_modules: iotjs_modules/bmp085-sensor iotjs_modules/bh1750
+${iotjs_modules_dir}: ${iotjs_modules_dir}/bmp085-sensor ${iotjs_modules_dir}/bh1750
 	ls $@
 
-iotjs_modules/%:
+${iotjs_modules_dir}/%:
 	-mkdir -p ${@D}
 	git clone --recursive --depth 1 https://github.com/TizenTeam/${@F} $@
 
-iotjs_modules/bh1750:
+${iotjs_modules_dir}/bh1750:
 	-mkdir -p ${@D}
 	git clone --recursive --depth 1 ${bh1750_url} $@
 
-iotjs_modules/iotjs-async:
+${iotjs_modules_dir}/async:
 	-mkdir -p ${@D}
 	git clone --recursive --depth 1 ${iotjs-async_url} $@
 
-iotjs_modules/bmp085-sensor: iotjs_modules/iotjs-async
+${iotjs_modules_dir}/bmp085-sensor: ${iotjs_modules_dir}/async
 	-mkdir -p ${@D}
 	git clone --recursive --depth 1 ${bmp085-sensor_url} $@
 
-setup/iotjs: ${runtime}_modules
+setup/iotjs: ${iotjs_modules_dir}
 	${@F} -h ||:
