@@ -12,19 +12,23 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
-    "bh1750": "0.0.5",
-    "bmp085-sensor": "0.0.5"
+    "bh1750": "^0.0.5",
+    "bmp085-sensor": "^0.0.5"
   },
   "keywords": [
+    "ambiant",
+    "ambiantlight",
+    "generic",
+    "i2c",
+    "illuminance",
+    "iotjs",
+    "iotjs-module",
+    "iotjs-supported",
+    "light",
     "sensor",
     "sensors",
-    "w3c",
-    "generic",
     "temperature",
-    "ambiant",
-    "light",
-    "illuminance.",
-    "iotjs-supported"
+    "w3c"
   ],
   "author": "Philippe Coval <philippe.coval@osg.samsung.com> (https://www.npmjs.com/~rzr)",
   "license": "Apache-2.0",
