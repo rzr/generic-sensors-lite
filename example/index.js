@@ -20,7 +20,7 @@ var console = require('console');
 
 var GenericSensors; 
 try {
-  GenericSensors = require('./generic-sensors-lite');
+  GenericSensors = require('../generic-sensors-lite');
 } catch(err) {
   GenericSensors = require('generic-sensors-lite');
 }

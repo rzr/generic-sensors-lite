@@ -72,7 +72,7 @@ For constrained environments:
 ```
 make runtime=iotjs run
 # (...)
-# iotjs example.js 
+# iotjs example/index.js 
 # log: temperature: 31.8
 # log: ambientlight: 16.666666666666668
 # (...)

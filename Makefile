@@ -26,10 +26,10 @@ runtime ?= node
 export runtime
 eslint ?= node_modules/eslint/bin/eslint.js
 srcs_dir ?= .
-srcs ?= $(wildcard ${project}.js */*.js | sort | uniq)
+srcs ?= $(wildcard *.js */*.js | sort | uniq)
 run_args ?=
 run_timeout ?= 10
-main_src ?= example.js
+main_src ?= example/index.js
 NODE_PATH := .:${NODE_PATH}
 export NODE_PATH
 
