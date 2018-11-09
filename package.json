@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "bh1750": "0.0.5",
-    "bmp085": "1.0.0"
+    "bmp085-sensor": "0.0.5"
   },
   "keywords": [
     "sensor",
@@ -33,6 +33,6 @@
   },
   "homepage": "https://github.com/rzr/generic-sensors-lite#readme",
   "devDependencies": {
-    "eslint": "^5.4.0"
+    "eslint": "^5.8.0"
   }
 }
