@@ -2,13 +2,16 @@
 
 Lightweight implementation of W3C spec, targeting constrained devices.
 
-Several JS engines will be supported.
+Several JavaScript runtimes are supported (node.js, IoT.js using JerryScript)
 
 [![GitHub forks](https://img.shields.io/github/forks/rzr/generic-sensors-lite.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/rzr/generic-sensors-lite/network/)
-[![NPM](https://nodei.co/npm/generic-sensors-lite.png)](https://npmjs.org/package/generic-sensors-lite)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite?ref=badge_shield)
+[![license](https://img.shields.io/badge/license-Apache-2.0.svg)](LICENSE)
+[![NPM](https://img.shields.io/npm/v/generic-sensors-lite.svg)](https://www.npmjs.com/package/generic-sensors-lite)
 [![Build Status](https://api.travis-ci.org/rzr/generic-sensors-lite.svg?branch=master)](https://travis-ci.org/rzr/generic-sensors-lite)
-[![dependencies Status](https://david-dm.org/rzr/generic-sensors-lite/status.svg)](https://david-dm.org/rzr/generic-sensor-lite)
+[![dependencies Status](https://david-dm.org/rzr/generic-sensors-lite/status.svg)](https://david-dm.org/rzr/generic-sensors-lite)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite?ref=badge_shield)
+
+[![NPM](https://nodei.co/npm/generic-sensors-lite.png)](https://npmjs.org/package/generic-sensors-lite)
 
 
 ## USAGE: ##
@@ -95,6 +98,7 @@ make runtime=iotjs run
 * http://www.iotjs.net/
 * http://jerryscript.net/
 * https://github.com/rzr/webthing-iotjs/wiki/IotJs
+* https://github.com/rzr/webthing-iotjs/wiki/Sensor
 
 
 ## LICENSE: ##
