@@ -1,9 +1,5 @@
 # GENERIC-SENSORS-LITE #
 
-Lightweight implementation of W3C spec, targeting constrained devices.
-
-Several JavaScript runtimes are supported (node.js, IoT.js using JerryScript)
-
 [![GitHub forks](https://img.shields.io/github/forks/rzr/generic-sensors-lite.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/rzr/generic-sensors-lite/network/)
 [![license](https://img.shields.io/badge/license-Apache-2.0.svg)](LICENSE)
 [![NPM](https://img.shields.io/npm/v/generic-sensors-lite.svg)](https://www.npmjs.com/package/generic-sensors-lite)
@@ -14,13 +10,21 @@ Several JavaScript runtimes are supported (node.js, IoT.js using JerryScript)
 [![NPM](https://nodei.co/npm/generic-sensors-lite.png)](https://npmjs.org/package/generic-sensors-lite)
 
 
+## INTRODUCTION: ##
+
+Lightweight implementation of W3C spec, targeting constrained devices.
+
+Several JavaScript runtimes are supported (node.js, IoT.js using JerryScript)
+
+[![Presentation](https://image.slidesharecdn.com/webthing-iotjs-20181022rzr-181027220201/95/webthingiotjs20181022rzr-34-638.jpg)](https://www.slideshare.net/slideshow/embed_code/key/BGdKOn9HHRF4Oa#webthing-iotjs# "WebThingIotJs")
+
+
 ## USAGE: ##
 
 Following sensors can be plugged on pins of your favorite single board computer:
 
-* I2C:
-  * BH1650: for measuring illuminance
-  * BMP085: for measuring temperature, or any compatible sensor (ie: BMP180)
+* BH1650: for measuring illuminance  (i2c=0x23)
+* BMPx80: for measuring temperature, or any compatible sensor (ie: BMP180, i2c=0x77)
 
 
 #### SETUP: ####
@@ -68,7 +72,6 @@ log: ambientlight: 51
 
 For constrained environments:
 
-
 ```
 make runtime=iotjs run
 # (...)
@@ -77,6 +80,8 @@ make runtime=iotjs run
 # log: ambientlight: 16.666666666666668
 # (...)
 ```
+
+Note: It has been verified on GNU/Linux not TizenRT yet (TODO).
 
 
 ### DEMO: ###
