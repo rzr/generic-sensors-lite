@@ -12,6 +12,7 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "bh1750": "^0.0.5",
     "bmp085-sensor": "^0.0.5"
   },
