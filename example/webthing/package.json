@@ -1,0 +1,28 @@
+{
+  "name": "generic-sensors-lite-webthing",
+  "version": "0.0.0",
+  "description": "WebOfThing Sensor example",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=.:../.. node index"
+  },
+  "author": "Philippe Coval <p.coval@samsung.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzr/generic-sensors-lite.git"
+  },
+  "keywords": [
+    "iotjs-module",
+    "iotjs-supported",
+    "sensors",
+    "webthing",
+    "wot"
+  ],"bugs": {
+    "url": "https://github.com/rzr/generic-sensors-lite/issues"
+  },
+  "homepage": "https://github.com/rzr/generic-sensors-lite",
+  "dependencies": {
+    "webthing": "^0.8.1"
+  }
+}
