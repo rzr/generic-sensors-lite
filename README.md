@@ -88,6 +88,28 @@ Note: It has been verified on GNU/Linux not TizenRT yet (TODO).
 
 [![web-of-things-agriculture-20180712rzr.webm](https://media.giphy.com/media/tKyrtKMc77iV9QUCrP/giphy.gif)](https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.webm "Video Demo")
 
+An extra example is provided to show integration in Mozilla's Thing project.
+Sensors are powered by webthing-iotjs and monitored on dashboard as progressive web app (PWA).
+
+Usage:
+
+```sh
+make runtime=iotjs run
+make -C example/webthing runtime=iotjs run
+# (...)
+# log: AmbientLight: AmbientLight: change: 28.333333333333336
+# log: Temperature: Temperature: change: 33
+# (...)
+```
+
+Respectively node could be supported too,
+just adapt to webthing-node API instead of webthing-iotjs (TODO):
+
+```sh
+make -C example/webthing runtime=node run
+# (...)
+```
+
 
 ## RESOURCES: ##
 
@@ -104,6 +126,7 @@ Note: It has been verified on GNU/Linux not TizenRT yet (TODO).
 * http://jerryscript.net/
 * https://github.com/rzr/webthing-iotjs/wiki/IotJs
 * https://github.com/rzr/webthing-iotjs/wiki/Sensor
+* https://social.samsunginter.net/@rzr/100969945665369600
 
 
 ## LICENSE: ##
