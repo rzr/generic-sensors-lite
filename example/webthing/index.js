@@ -135,7 +135,7 @@ function TemperatureProperty(thing, name, value, metadata, config) {
     } catch (err) {
       return err;
     }
-    log("log: AmbientLight: " + this.getName() + ": close:");
+    log("log: Temperature: " + this.getName() + ": close:");
   };
 
   return this;
