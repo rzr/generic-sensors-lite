@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 var console = require('console');
-var webthing = require('webthing');
+var webthing = require('webthing-iotjs');
 var Property = webthing.Property;
 var SingleThing = webthing.SingleThing;
 var Thing = webthing.Thing;
