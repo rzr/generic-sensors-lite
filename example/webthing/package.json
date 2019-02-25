@@ -18,11 +18,12 @@
     "sensors",
     "webthing",
     "wot"
-  ],"bugs": {
+  ],
+  "bugs": {
     "url": "https://github.com/rzr/generic-sensors-lite/issues"
   },
   "homepage": "https://github.com/rzr/generic-sensors-lite",
   "dependencies": {
-    "webthing": "^0.8.1"
+    "webthing-iotjs": "^0.10.0"
   }
 }
