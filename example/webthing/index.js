@@ -206,9 +206,16 @@ function main () {
 
   var thing = new Thing('GenericSensors', [], 'A set of sensors');
   thing.addProperty(new AmbientLightProperty(thing));
+  thing.addProperty(new ColorProperty(thing));
   thing.addProperty(new TemperatureProperty(thing));
   var server = new WebThingServer(new SingleThing(thing), port);
   process.on('SIGINT', function () {
+    for (var property in thing.properties) {
+      property = thing.properties[property];
+      if (property.close) {
+        property.close();
+      }
+    }
     server.stop();
   });
   server.start();
