@@ -22,7 +22,7 @@ default: all
 
 project?=generic-sensors-lite
 tmp_dir ?= tmp
-runtime ?= node
+runtime ?= iotjs
 export runtime
 eslint ?= node_modules/eslint/bin/eslint.js
 srcs_dir ?= .
@@ -42,6 +42,12 @@ iotjs-async_url?=https://github.com/rzr/iotjs-async
 # TODO: https://github.com/dbridges/bmp085-sensor/pull/7
 bmp085-sensor_revision?=master
 bmp085-sensor_url?=https://github.com/tizenteam/bmp085-sensor
+color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
+#color-sensor-js_revision=TODO
+
+iotjs_modules_dirs+=${iotjs_modules_dir}/bh1750
+iotjs_modules_dirs+=${iotjs_modules_dir}/bmp085-sensor
+iotjs_modules_dirs+=${iotjs_modules_dir}/color-sensor-js
 
 help:
 	@echo "## Usage: "
@@ -139,7 +145,7 @@ lint/%: eslint
 lint: lint/${runtime}
 	@echo "log: $@: $^"
 
-${iotjs_modules_dir}: ${iotjs_modules_dir}/bmp085-sensor ${iotjs_modules_dir}/bh1750
+${iotjs_modules_dir}: ${iotjs_modules_dirs}
 	ls $@
 
 ${iotjs_modules_dir}/%:
@@ -157,6 +163,10 @@ ${iotjs_modules_dir}/async:
 ${iotjs_modules_dir}/bmp085-sensor: ${iotjs_modules_dir}/async
 	-mkdir -p ${@D}
 	git clone --recursive --depth 1 ${bmp085-sensor_url} $@
+
+${iotjs_modules_dir}/color-sensor-js:
+	-mkdir -p ${@D}
+	git clone --recursive --depth 1 ${color-sensor-js_url} $@
 
 setup/iotjs: ${iotjs_modules_dir}
 	${@F} -h ||:
