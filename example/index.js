@@ -45,6 +45,26 @@ for (i=0; i < process.argv.length; i++) {
 }
 
 for (i=0; i < process.argv.length; i++) {
+  if ((process.argv.length <= 2) || (process.argv[i] === "color")) {
+    var color = new GenericSensors.Color({ controller: 'tcs34725',
+                                           frequency: 2 });
+    color.onreading = function() {
+      console.log("log: " + color.type + ": " + color.color);
+    };
+    color.onerror = function(err) {
+      console.log('error: ' + color.type + ': ' + err);
+      color.stop();
+    }
+    color.onactivate = function() {
+      setTimeout(function(){color.stop();} , 5000);
+    }
+    color.start();
+    break;
+  }
+}
+
+
+for (i=0; i < process.argv.length; i++) {
   if ((process.argv.length <= 2) || (process.argv[i] === "temperature")) {
     var temperature = new GenericSensors.Temperature({ frequency: 2 });
     temperature.onreading = function() {
