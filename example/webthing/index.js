@@ -85,6 +85,63 @@ function AmbientLightProperty(thing, name, value, metadata, config) {
 }
 
 
+function ColorProperty(thing, name, value, metadata, config) {
+  var self = this;
+  name = name || 'Color';
+  value = value || 0;
+  metadata = metadata || {};
+  metadata.description = metadata.description || 'Color Sensor';
+  metadata.label = metadata.label || '#rrggbb';
+  config = config || {};
+  config.frequency = config.frequency || 1;
+
+  Property.call(this, thing, name,
+                new Value(Number(value)),
+                {
+                  '@type': 'ColorProperty',
+                  description: metadata,
+                  label: metadata.label,
+                  readOnly: true,
+                  type: 'color',
+                });
+  {
+    this.period = 1000.0 / config.frequency;
+    this.config = config;
+    this.sensor = new GenericSensors.Color();
+
+    this.sensor.onreading = function() {
+      verbose("log: " + self.sensor.type + ": " + self.sensor.color);
+      var updatedValue = String(self.sensor.color);
+
+      if (updatedValue !== self.lastValue) {
+        log("log: Color: " + self.getName() + ": change: " + updatedValue);
+        self.value.notifyOfExternalUpdate(updatedValue);
+        self.lastValue = updatedValue;
+      }
+    };
+    this.sensor.onerror = function(err) {
+      console.error("error: Color: " + self.getName() + ": Fail to open: " + err);
+      self.sensor.stop();
+    }
+    this.sensor.onactivate = function() {
+      verbose("log: Color: " + self.getName() + ": onactivate:");
+    }
+    this.sensor.start();
+  }
+
+  self.close = function () {
+    try {
+      this.sensor.stop();
+    } catch (err) {
+      return err;
+    }
+    log("log: Color: " + this.getName() + ": close:");
+  };
+
+  return this;
+}
+
+
 function TemperatureProperty(thing, name, value, metadata, config) {
   var self = this;
   name = name || 'Temperature';
