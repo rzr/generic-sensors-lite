@@ -15,7 +15,7 @@
   "dependencies": {
     "bh1750": "^0.0.5",
     "bmp085-sensor": "^0.0.5",
-    "color-sensor-js": "0.0.1"
+    "color-sensor-js": "0.0.4"
   },
   "keywords": [
     "ambiant",
