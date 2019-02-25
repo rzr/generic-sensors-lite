@@ -29,14 +29,14 @@ help:
 	@echo "# Usage:"
 	@echo "# make runtime=iotjs run"
 
-iotjs_modules/webthing:
+iotjs_modules/webthing-iotjs:
 	@mkdir -p $@
 	git clone --depth 1 --recursive ${webthing_url} $@
 
-iotjs_modules/webthing/%: iotjs_modules/webthing
+iotjs_modules/webthing-iotjs/%: iotjs_modules/webthing-iotjs
 	@ls $@
 
-iotjs/run: index.js iotjs_modules/webthing/index.js
+iotjs/run: index.js iotjs_modules/webthing-iotjs/index.js
 	IOTJS_EXTRA_MODULE_PATH=${top_dir}:${top_dir}/iotjs_modules iotjs $<
 
 iotjs/debug: iotjs_modules index.js
