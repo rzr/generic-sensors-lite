@@ -4,7 +4,8 @@
   "description": "Lightweight implementation of W3C spec, targeting constrained devices",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_PATH=. node example",
+    "test": "node lib",
+    "start": "node example",
     "lint": "eslint ."
   },
   "repository": {
