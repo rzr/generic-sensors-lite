@@ -36,6 +36,8 @@ export NODE_PATH
 iotjs_modules_dir?=${CURDIR}/iotjs_modules
 
 bh1750_url?=https://github.com/miroRucka/bh1750
+# TODO: https://github.com/miroRucka/bh1750/issues/20
+bh1750_revison?=master
 iotjs-async_url?=https://github.com/rzr/iotjs-async
 # TODO: https://github.com/dbridges/bmp085-sensor/pull/7
 bmp085-sensor_revision?=master
