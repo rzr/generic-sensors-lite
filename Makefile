@@ -37,6 +37,8 @@ iotjs_modules_dir?=${CURDIR}/iotjs_modules
 
 bh1750_url?=https://github.com/miroRucka/bh1750
 iotjs-async_url?=https://github.com/rzr/iotjs-async
+# TODO: https://github.com/dbridges/bmp085-sensor/pull/7
+bmp085-sensor_revision?=master
 bmp085-sensor_url?=https://github.com/tizenteam/bmp085-sensor
 
 help:
