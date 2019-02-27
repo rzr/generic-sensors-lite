@@ -30,6 +30,7 @@ srcs ?= $(wildcard *.js */*.js | sort | uniq)
 run_args ?=
 run_timeout ?= 10
 main_src ?= example/index.js
+test_src ?= lib/index.js
 NODE_PATH := .:${NODE_PATH}
 export NODE_PATH
 
@@ -101,7 +102,11 @@ distclean: cleanall
 test/npm: package.json
 	npm test
 
+test/${runtime}: ${test_src} ${runtime}/modules
+	${@F} $<
+
 test: test/${runtime}
+	@echo "log: $@: $^"
 
 start: run
 	@echo "log: $@: $^"
@@ -178,3 +183,6 @@ rule/npm/version/%: package.json
 	-git commit -sam "webthing: Update version to ${@F}"
 	-git add package*.json
 	npm version ${@F}
+
+iotjs/modules: ${iotjs_modules_dir}
+	ls $<
