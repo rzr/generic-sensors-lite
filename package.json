@@ -13,9 +13,11 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
-    "bh1750": "^0.0.5",
-    "bmp085-sensor": "^0.0.5",
     "color-sensor-js": "0.0.4"
+  },
+  "optionalDependencies": {
+    "bh1750": "^0.0.5",
+    "bmp085-sensor": "^0.0.5"
   },
   "keywords": [
     "ambiant",
