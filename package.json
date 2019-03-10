@@ -42,5 +42,8 @@
   "homepage": "https://github.com/rzr/generic-sensors-lite#readme",
   "devDependencies": {
     "eslint": "^5.8.0"
-  }
+  },
+  "os": [
+    "linux"
+  ]
 }
