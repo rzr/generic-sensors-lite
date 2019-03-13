@@ -126,7 +126,7 @@ check/%: ${srcs}
 check/npm:
 	npm run lint
 
-check: check/${runtime}
+check: lint check/${runtime}
 	@echo "log: $@: $^"
 
 node_modules/%:
