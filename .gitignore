@@ -1,4 +1,6 @@
+#.gitignore
 *~
 *.tmp
-node_modules/
-iotjs_modules/
+**/tmp
+**/node_modules/
+**/iotjs_modules/
