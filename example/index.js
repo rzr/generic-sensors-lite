@@ -47,8 +47,7 @@ for (i=0; i < process.argv.length; i++) {
 
 for (i=0; i < process.argv.length; i++) {
   if ((process.argv.length <= 2) || (process.argv[i] === "color")) {
-    var color = new GenericSensors.Color({ controller: 'tcs34725',
-                                           frequency: 2 });
+    var color = new GenericSensors.Color({ frequency: 2 });
     color.onreading = function() {
       console.log("log: " + color.type + ": " + color.color);
     };
