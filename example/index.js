@@ -81,3 +81,22 @@ for (i=0; i < process.argv.length; i++) {
     break;
   }
 }
+
+
+for (i=0; i < process.argv.length; i++) {
+  if ((process.argv.length <= 2) || (process.argv[i] === "geolocation")) {
+    var geolocation = new GenericSensors.Geolocation({ frequency: 2 });
+    geolocation.onreading = function() {
+      console.log("log: " + geolocation.type + ": " + geolocation.latitude + ", " + geolocation.longitude);
+    };
+    geolocation.onerror = function(err) {
+      console.log('error: ' + geolocation.type + ': ' + err);
+      geolocation.stop();
+    }
+    geolocation.onactivate = function() {
+      setTimeout(function(){geolocation.stop();} , 5000);
+    }
+    geolocation.start();
+    break;
+  }
+}
