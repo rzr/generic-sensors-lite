@@ -84,6 +84,13 @@ make runtime=iotjs run
 Note: It has been verified on GNU/Linux not TizenRT yet (TODO).
 
 
+#### USING NODE.JS ####
+
+```sh
+node lib/ambientlight "{ \"controller\": \"bh1750\"}"
+```
+
+
 ### DEMO: ###
 
 [![web-of-things-agriculture-20180712rzr.webm](https://media.giphy.com/media/tKyrtKMc77iV9QUCrP/giphy.gif)](https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.webm "Video Demo")
