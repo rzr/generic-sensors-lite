@@ -19,6 +19,9 @@
     "bh1750": "^0.0.5",
     "bmp085-sensor": "^0.0.5"
   },
+  "iotjs": {
+    "version": ">=1.0"
+  },
   "keywords": [
     "ambiant",
     "ambiantlight",
