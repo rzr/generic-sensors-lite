@@ -18,12 +18,11 @@
 'use strict';
 var console = require('console');
 
-var GenericSensors = null;
-
+var GenericSensors; 
 try {
-  GenericSensors = require('../lib/controllers');
+  GenericSensors = require('../generic-sensors-lite');
 } catch(err) {
-  GenericSensors = require('generic-sensors-lite/lib/controllers');
+  GenericSensors = require('generic-sensors-lite');
 }
 
 var i=0;
