@@ -41,6 +41,7 @@ RUN echo "#log: Setup system" \
   curl \
   git \
   make \
+  npm \
   sudo \
   && apt-get clean \
   && sync
