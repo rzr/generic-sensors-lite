@@ -129,13 +129,15 @@ check/npm:
 check: check/${runtime}
 	@echo "log: $@: $^"
 
-eslint/setup: node_modules
-	ls ${eslint} || npm install eslint-plugin-node eslint
+node_modules/%:
+	npm install ${@F}
+
+${eslint}: node_modules/eslint-plugin-import node_modules/eslint-plugin-node
+	ls $<
+
+eslint/setup: ${eslint}
 	${eslint} --version
 
-${eslint}:
-	ls $@ || make eslint/setup
-	touch $@
 
 .eslintrc.js: ${eslint}
 	ls $@ || $< --init
