@@ -130,9 +130,10 @@ check: lint check/${runtime}
 	@echo "log: $@: $^"
 
 node_modules/%:
-	npm install ${@F}
+	npm install
+	ls $@
 
-${eslint}: node_modules/eslint-plugin-import node_modules/eslint-plugin-node
+${eslint}: node_modules/eslint
 	ls $<
 
 eslint/setup: ${eslint}
@@ -143,8 +144,10 @@ eslint/setup: ${eslint}
 	ls $@ || $< --init
 
 eslint: ${eslint}
-	$< --fix . ||:
-	$< --fix .
+	node $< --fix . ||:
+	-git diff
+	-git status
+	node $< --fix .
 
 lint/%: eslint
 	@echo "log: $@: $^"
