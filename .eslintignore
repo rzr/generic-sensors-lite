@@ -1,0 +1,7 @@
+#.eslintignore
+#.gitignore
+*~
+*.tmp
+**/tmp
+**/node_modules/
+**/iotjs_modules/
