@@ -21,4 +21,4 @@ services:
     build: .
     command: npm test
     volumes:
-      - /usr/local/mastodon-lite/mastodon-lite/
+      - /usr/local/generic-sensors-lite/generic-sensors-lite/
