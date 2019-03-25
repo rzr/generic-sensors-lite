@@ -13,7 +13,7 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
-    "color-sensor-js": "0.0.4"
+    "color-sensor-js": "0.0.6"
   },
   "optionalDependencies": {
     "bh1750": "^0.0.5",
@@ -41,7 +41,12 @@
   },
   "homepage": "https://github.com/rzr/generic-sensors-lite#readme",
   "devDependencies": {
-    "eslint": "^5.8.0"
+    "eslint": "^5.15.3",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
   },
   "os": [
     "linux"
