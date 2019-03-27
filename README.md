@@ -25,6 +25,7 @@ Following sensors can be plugged on pins of your favorite single board computer:
 
 * BH1650: for measuring illuminance  (i2c=0x23)
 * BMPx80: for measuring temperature, or any compatible sensor (ie: BMP180, i2c=0x77)
+* TCS34725: for measuring colors (i2c=0x29)
 
 
 #### SETUP: ####
@@ -127,6 +128,7 @@ make -C example/webthing runtime=node run
 * https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/
 * https://github.com/miroRucka/bh1750/pull/17
 * https://github.com/dbridges/bmp085-sensor/pull/7
+* https://github.com/samsunginternet/color-sensor-js
 * https://github.com/samsung/iotjs/wiki
 * https://github.com/samsung/iotjs
 * http://www.iotjs.net/
@@ -134,6 +136,7 @@ make -C example/webthing runtime=node run
 * https://github.com/rzr/webthing-iotjs/wiki/IotJs
 * https://github.com/rzr/webthing-iotjs/wiki/Sensor
 * https://social.samsunginter.net/@rzr/100969945665369600
+* https://travis-ci.org/rzr/generic-sensors-lite
 
 
 ## LICENSE: ##
