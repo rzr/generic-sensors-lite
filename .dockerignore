@@ -1,0 +1,9 @@
+#.dockerignore
+Dockerfile
+.git/
+#.gitignore
+*~
+*.tmp
+**/tmp
+**/node_modules/
+**/iotjs_modules/
