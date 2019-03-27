@@ -1,6 +1,6 @@
 {
   "name": "generic-sensors-lite",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Lightweight implementation of W3C spec, targeting constrained devices",
   "main": "index.js",
   "scripts": {
