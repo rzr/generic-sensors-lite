@@ -23,8 +23,9 @@
     "version": ">=1.0"
   },
   "keywords": [
-    "ambiant",
-    "ambiantlight",
+    "ambient",
+    "ambientlight",
+    "color",
     "generic",
     "i2c",
     "illuminance",
@@ -32,8 +33,10 @@
     "iotjs-module",
     "iotjs-supported",
     "light",
+    "mock",
     "sensor",
     "sensors",
+    "simulator",
     "temperature",
     "w3c"
   ],
@@ -42,7 +45,7 @@
   "bugs": {
     "url": "https://github.com/rzr/generic-sensors-lite/issues"
   },
-  "homepage": "https://github.com/rzr/generic-sensors-lite#readme",
+  "homepage": "https://libraries.io/npm/generic-sensors-lite",
   "devDependencies": {
     "eslint": "^5.15.3",
     "eslint-config-standard": "^12.0.0",
