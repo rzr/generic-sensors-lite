@@ -21,7 +21,8 @@ Several JavaScript runtimes are supported (node.js, IoT.js using JerryScript)
 
 ## USAGE: ##
 
-Following sensors can be plugged on pins of your favorite single board computer:
+By default simulator are used and generate random values,
+but following sensors can be plugged on pins of your favorite single board computer:
 
 * BH1650: for measuring illuminance  (i2c=0x23)
 * BMPx80: for measuring temperature, or any compatible sensor (ie: BMP180, i2c=0x77)
@@ -39,16 +40,15 @@ sudo raspi-config # Enable I2C
 ls -l /dev/i2c* || sudo reboot
 sudo apt-get install i2c-tools
 /usr/sbin/i2cdetect -y 1
-
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
-10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-20: -- -- -- 23 -- -- -- -- -- -- -- -- -- -- -- -- 
-30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-70: -- -- -- -- -- -- -- 77
+#|      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+#| 00:          -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 20: -- -- -- 23 -- -- -- -- -- 29 -- -- -- -- -- -- 
+#| 30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 70: -- -- -- -- -- -- -- 77
 ```
 
 #### USING NODE.JS: ####
@@ -58,12 +58,12 @@ git clone --recursive https://github.com/rzr/generic-sensors-lite
 cd generic-sensors-lite
 npm install
 npm test
-(...)
-log: temperature: 28.1
-log: ambientlight: 51
-log: temperature: 28.1
-log: temperature: 28.1
-log: ambientlight: 51
+#| (...)
+#| log: temperature: 28.1
+#| log: ambientlight: 51
+#| log: temperature: 28.1
+#| log: temperature: 28.1
+#| log: ambientlight: 51
 (...)
 
 ```
@@ -75,11 +75,11 @@ For constrained environments:
 
 ```
 make runtime=iotjs run
-# (...)
-# iotjs example/index.js 
-# log: temperature: 31.8
-# log: ambientlight: 16.666666666666668
-# (...)
+#| (...)
+#| iotjs example/index.js 
+#| log: temperature: 31.8
+#| log: ambientlight: 16.666666666666668
+#| (...)
 ```
 
 Note: It has been verified on GNU/Linux not TizenRT yet (TODO).
@@ -104,10 +104,10 @@ Usage:
 ```sh
 make runtime=iotjs run
 make -C example/webthing runtime=iotjs run
-# (...)
-# log: AmbientLight: AmbientLight: change: 28.333333333333336
-# log: Temperature: Temperature: change: 33
-# (...)
+#| (...)
+#| log: AmbientLight: AmbientLight: change: 28.333333333333336
+#| log: Temperature: Temperature: change: 33
+#| (...)
 ```
 
 Respectively node could be supported too,
@@ -115,7 +115,7 @@ just adapt to webthing-node API instead of webthing-iotjs (TODO):
 
 ```sh
 make -C example/webthing runtime=node run
-# (...)
+#| (...)
 ```
 
 
