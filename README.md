@@ -123,7 +123,9 @@ make -C example/webthing runtime=node run
 
 * https://www.npmjs.com/package/generic-sensors-lite
 * https://github.com/rzr/generic-sensors-lite
+* https://medium.com/samsung-internet-dev/sensors-webthings-bc48ad9963dd#
 * https://w3c.github.io/sensors/
+* https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
 * https://github.com/rzr/mozilla-iot-generic-sensors-adapter
 * https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/
 * https://github.com/miroRucka/bh1750/pull/17
@@ -137,6 +139,7 @@ make -C example/webthing runtime=node run
 * https://github.com/rzr/webthing-iotjs/wiki/Sensor
 * https://social.samsunginter.net/@rzr/100969945665369600
 * https://travis-ci.org/rzr/generic-sensors-lite
+
 
 
 ## LICENSE: ##
