@@ -21,38 +21,58 @@ default: help
 	@echo "log: $@: $^"
 
 runtime?=iotjs
-top_dir?=../..
+topreldir?=../..
 base_url?=http://localhost:8888
-webthing_url?=https://github.com/rzr/webthing-iotjs
+
+iotjs_modules_dir?=${CURDIR}/iotjs_modules
+example_file?=index.js
+
+webthing-iotjs_url?=https://github.com/rzr/webthing-iotjs
+webthing-iotjs_revision?=webthing-iotjs-0.11.2-1
+webthing-iotjs_dir?=${iotjs_modules_dir}/webthing-iotjs
+iotjs_modules_dirs+=${webthing-iotjs_dir}
+
+IOTJS_EXTRA_MODULE_PATH?=${topreldir}/iotjs_modules
+export IOTJS_EXTRA_MODULE_PATH
 
 help:
 	@echo "# Usage:"
 	@echo "# make runtime=iotjs run"
 
-iotjs_modules/webthing-iotjs:
-	@mkdir -p $@
-	git clone --depth 1 --recursive ${webthing_url} $@
 
-iotjs_modules/webthing-iotjs/%: iotjs_modules/webthing-iotjs
-	@ls $@
+${webthing-iotjs_dir}:
+	git clone --recursive --depth 1 ${webthing-iotjs_url} -b ${webthing-iotjs_revision} $@
+	make -C $@ deploy deploy_modules_dir=${iotjs_modules_dir}
 
-iotjs/run: index.js iotjs_modules/webthing-iotjs/index.js
-	IOTJS_EXTRA_MODULE_PATH=${top_dir}:${top_dir}/iotjs_modules iotjs $<
+${deploy_module_dir}/%: %
+	@echo "# TODO: minify: $< to $@"
+	install -d ${@D}
+	install $< $@
 
-iotjs/debug: iotjs_modules index.js
-#	rm -rf node_modules
-	NODE_PATH=${<}:${top_dir}:${top_dir}/${<F}:node_modules node index.js
-
-test:
-	curl ${base_url}
-	@echo
-	curl ${base_url}/properties
+${deploy_modules_dir}/webthing-iotjs: ${iotjs_modules_dir}/webthing-iotjs
+	make -C $< deploy deploy_modules_dir="${deploy_modules_dir}"
 
 node_modules: package.json
 	npm install
 
-node/run: node_modules
+node/start: node_modules
 	npm start
 
-run: ${runtime}/run
+iotjs/start: ${example_file} ${iotjs_modules_dirs}
+	iotjs $< ${run_args}
+
+run: start
 	@echo "# $@: $^"
+
+start: ${runtime}/start
+	@echo "# $@: $^"
+
+modules: ${runtime}/modules
+	@echo "# $@: $^"
+
+iotjs_modules: ${topreldir}/iotjs_modules ${iotjs_modules_dirs}
+	ls $<
+
+distclean:
+	rm -rf node_modules
+	rm -rf iotjs_modules
