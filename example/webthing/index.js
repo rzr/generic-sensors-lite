@@ -22,7 +22,13 @@ var Thing = webthing.Thing;
 var Value = webthing.Value;
 var WebThingServer = webthing.WebThingServer;
 
-var GenericSensors = require('generic-sensors-lite');
+var GenericSensors;
+
+try {
+  GenericSensors = require('../../generic-sensors-lite');
+} catch(err) {
+  GenericSensors = require('generic-sensors-lite');
+}
 
 var log = console.log;
 var verbose = !console.log || function() {};
