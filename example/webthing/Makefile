@@ -28,7 +28,7 @@ iotjs_modules_dir?=${CURDIR}/iotjs_modules
 example_file?=index.js
 
 webthing-iotjs_url?=https://github.com/rzr/webthing-iotjs
-webthing-iotjs_revision?=webthing-iotjs-0.11.2-1
+webthing-iotjs_revision?=webthing-iotjs-0.11.3-0
 webthing-iotjs_dir?=${iotjs_modules_dir}/webthing-iotjs
 iotjs_modules_dirs+=${webthing-iotjs_dir}
 
@@ -58,7 +58,7 @@ node_modules: package.json
 node/start: node_modules
 	npm start
 
-iotjs/start: ${example_file} ${iotjs_modules_dirs}
+iotjs/start: ${example_file} iotjs_modules
 	iotjs $< ${run_args}
 
 run: start
@@ -72,6 +72,9 @@ modules: ${runtime}/modules
 
 iotjs_modules: ${topreldir}/iotjs_modules ${iotjs_modules_dirs}
 	ls $<
+
+${topreldir}/iotjs_modules:
+	${MAKE} -C ${@D} modules
 
 distclean:
 	rm -rf node_modules

@@ -40,7 +40,8 @@ iotjs_modules_dir?=${CURDIR}/iotjs_modules
 bh1750_url?=https://github.com/abandonware/bh1750
 bh1750_revison?=v0.0.7-0
 bmp085-sensor_url?=https://github.com/abandonware/bmp085-sensor
-bmp085-sensor_revision?=v0.0.7-0
+#bmp085-sensor_revision?=v0.0.7-0
+bmp085-sensor_revision?=master
 color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
 color-sensor-js_revision?=v0.0.8
 
@@ -48,6 +49,8 @@ iotjs_modules_dirs+=${iotjs_modules_dir}/bh1750
 iotjs_modules_dirs+=${iotjs_modules_dir}/bmp085-sensor
 iotjs_modules_dirs+=${iotjs_modules_dir}/color-sensor-js
 
+IOTJS_EXTRA_MODULE_PATH?=.
+export IOTJS_EXTRA_MODULE_PATH
 
 help:
 	@echo "## Usage: "
@@ -163,19 +166,16 @@ ${iotjs_modules_dir}/%:
 
 ${iotjs_modules_dir}/bh1750:
 	-mkdir -p ${@D}
-	git clone --recursive --depth 1 ${bh1750_url} $@
+	git clone --recursive --depth=1 --branch="${bh1750_revison}" "${bh1750_url}" "$@"
 
-${iotjs_modules_dir}/async:
+${iotjs_modules_dir}/bmp085-sensor:
 	-mkdir -p ${@D}
-	git clone --recursive --depth 1 ${iotjs-async_url} $@
-
-${iotjs_modules_dir}/bmp085-sensor: ${iotjs_modules_dir}/async
-	-mkdir -p ${@D}
-	git clone --recursive --depth 1 ${bmp085-sensor_url} $@
+	git clone --recursive --depth=1 --branch="${bmp085-sensor_revision}" "${bmp085-sensor_url}" "$@"
+	make -C ${@} modules iotjs_modules_dir=${@D}
 
 ${iotjs_modules_dir}/color-sensor-js:
 	-mkdir -p ${@D}
-	git clone --recursive --depth 1 --branch ${color-sensor-js_revision} ${color-sensor-js_url} $@
+	git clone --recursive --depth=1 --branch="${color-sensor-js_revision}" "${color-sensor-js_url}" "$@"
 
 setup/iotjs: ${iotjs_modules_dir}
 	${@F} -h ||:
@@ -188,5 +188,12 @@ rule/npm/version/%: package.json
 	-git add package*.json
 	npm version ${@F}
 
-iotjs/modules: ${iotjs_modules_dir}
+
+iotjs_modules: ${iotjs_modules_dirs}
 	ls $<
+
+iotjs/modules: ${runtime}_modules
+	ls $<
+
+modules: ${runtime}/modules
+	@echo "log: $@: $^"
