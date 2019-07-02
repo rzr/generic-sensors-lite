@@ -20,6 +20,7 @@
 default: all
 	@echo "log: $@: $^"
 
+
 project?=generic-sensors-lite
 tmp_dir ?= tmp
 runtime ?= iotjs
@@ -44,11 +45,12 @@ iotjs-async_url?=https://github.com/rzr/iotjs-async
 bmp085-sensor_revision?=master
 bmp085-sensor_url?=https://github.com/tizenteam/bmp085-sensor
 color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
-#color-sensor-js_revision=TODO
+color-sensor-js_revision?=v0.0.7
 
 iotjs_modules_dirs+=${iotjs_modules_dir}/bh1750
 iotjs_modules_dirs+=${iotjs_modules_dir}/bmp085-sensor
 iotjs_modules_dirs+=${iotjs_modules_dir}/color-sensor-js
+
 
 help:
 	@echo "## Usage: "
@@ -176,7 +178,7 @@ ${iotjs_modules_dir}/bmp085-sensor: ${iotjs_modules_dir}/async
 
 ${iotjs_modules_dir}/color-sensor-js:
 	-mkdir -p ${@D}
-	git clone --recursive --depth 1 ${color-sensor-js_url} $@
+	git clone --recursive --depth 1 --branch ${color-sensor-js_revision} ${color-sensor-js_url} $@
 
 setup/iotjs: ${iotjs_modules_dir}
 	${@F} -h ||:
