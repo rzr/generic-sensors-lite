@@ -36,7 +36,7 @@ var verbose = !console.log || function() {};
 
 function AmbientLightProperty(thing, name, value, metadata, config) {
   var self = this;
-  name = name || 'AmbientLight';
+  name = name || 'ambientLight';
   value = value || 0;
   metadata = metadata || {};
   metadata.description = metadata.description || 'AmbientLight Sensor';
@@ -93,7 +93,7 @@ function AmbientLightProperty(thing, name, value, metadata, config) {
 
 function ColorProperty(thing, name, value, metadata, config) {
   var self = this;
-  name = name || 'Color';
+  name = name || 'color';
   value = value || 0;
   metadata = metadata || {};
   metadata.description = metadata.description || 'Color Sensor';
@@ -150,7 +150,7 @@ function ColorProperty(thing, name, value, metadata, config) {
 
 function TemperatureProperty(thing, name, value, metadata, config) {
   var self = this;
-  name = name || 'Temperature';
+  name = name || 'temperature';
   value = value || 0;
   metadata = metadata || {};
   metadata.description = metadata.description || 'Temperature Sensor';
