@@ -16,7 +16,7 @@
     "color-sensor-js": "0.0.7"
   },
   "optionalDependencies": {
-    "bh1750": "^0.0.5",
+    "@abandonware/bh1750": "0.0.7-0",
     "bmp085-sensor": "^0.0.5"
   },
   "iotjs": {
