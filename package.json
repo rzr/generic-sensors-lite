@@ -17,7 +17,7 @@
   },
   "optionalDependencies": {
     "@abandonware/bh1750": "0.0.7-0",
-    "bmp085-sensor": "^0.0.5"
+    "@abandonware/bmp085-sensor": "0.0.6-0"
   },
   "iotjs": {
     "version": ">=1.0"
