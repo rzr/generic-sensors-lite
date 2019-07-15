@@ -37,15 +37,12 @@ export NODE_PATH
 
 iotjs_modules_dir?=${CURDIR}/iotjs_modules
 
-bh1750_url?=https://github.com/miroRucka/bh1750
-# TODO: https://github.com/miroRucka/bh1750/issues/20
-bh1750_revison?=master
-iotjs-async_url?=https://github.com/rzr/iotjs-async
-# TODO: https://github.com/dbridges/bmp085-sensor/pull/7
-bmp085-sensor_revision?=master
-bmp085-sensor_url?=https://github.com/tizenteam/bmp085-sensor
+bh1750_url?=https://github.com/abandonware/bh1750
+bh1750_revison?=v0.0.7-0
+bmp085-sensor_url?=https://github.com/abandonware/bmp085-sensor
+bmp085-sensor_revision?=v0.0.7-0
 color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
-color-sensor-js_revision?=v0.0.7
+color-sensor-js_revision?=v0.0.8
 
 iotjs_modules_dirs+=${iotjs_modules_dir}/bh1750
 iotjs_modules_dirs+=${iotjs_modules_dir}/bmp085-sensor
