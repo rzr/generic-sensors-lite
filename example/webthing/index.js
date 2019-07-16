@@ -14,217 +14,75 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 var console = require('console');
-var webthing = require('webthing-iotjs');
-var Property = webthing.Property;
-var SingleThing = webthing.SingleThing;
-var Thing = webthing.Thing;
-var Value = webthing.Value;
-var WebThingServer = webthing.WebThingServer;
+var webthing = require('webthing-iotjs')
 
-var GenericSensors;
-
+var GenericSensors = null;
 try {
-  GenericSensors = require('../../generic-sensors-lite');
-} catch(err) {
-  GenericSensors = require('generic-sensors-lite');
+  GenericSensors = require('../webthing/../../generic-sensors-lite.js')
+} catch (err) {
+  GenericSensors = require('generic-sensor-lite')
 }
 
-var log = console.log;
-var verbose = !console.log || function() {};
+function start () {
+  var that = this
+  this.port = process.argv[2]
+    ? Number(process.argv[2])
+    : 8888
+  this.controller = process.argv[3]
+    ? String(process.argv[3])
+    : 'simulator'
+  this.thing = new webthing.Thing('GenericSensors')
 
+  this.sensors = {};
+  for (var name in Object.keys(GenericSensors)) {
+    name = Object.keys(GenericSensors)[name];
+    this.sensors[name] = {};
+    this.sensors[name].sensor = new GenericSensors[name]();
+    this.sensors[name].value = {};
+    for (var field in this.sensors[name].sensor.properties) {
+      field = this.sensors[name].sensor.properties[field];
+      this.sensors[name].value[field] = new webthing.Value();
 
-function AmbientLightProperty(thing, name, value, metadata, config) {
-  var self = this;
-  name = name || 'ambientLight';
-  value = value || 0;
-  metadata = metadata || {};
-  metadata.description = metadata.description || 'AmbientLight Sensor';
-  metadata.label = metadata.label || 'Illuminance';
-  config = config || {};
-  config.frequency = config.frequency || 1;
+      this.thing.addProperty(new webthing.Property(
+        this.thing,
+        field,
+        this.sensors[name].value[field],
+        {
+          readOnly: true,
+        }
+      ));
+    }
 
-  Property.call(this, thing, name,
-                new Value(Number(value)),
-                {
-                  '@type': 'NumberProperty',
-                  description: metadata,
-                  label: metadata.label,
-                  readOnly: true,
-                  type: 'number',
-                });
-  {
-    this.period = 1000.0 / config.frequency;
-    this.config = config;
-    this.sensor = new GenericSensors.AmbientLight();
+    this.sensors[name].controller = new GenericSensors[name]();
+    this.sensors[name].controller.parent = this.sensors[name];
 
-    this.sensor.onreading = function() {
-      verbose("log: " + self.sensor.type + ": " + self.sensor.illuminance);
-      var updatedValue = Number(self.sensor.illuminance);
-
-      if (updatedValue !== self.lastValue) {
-        log("log: AmbientLight: " + self.getName() + ": change: " + updatedValue);
-        self.value.notifyOfExternalUpdate(updatedValue);
-        self.lastValue = updatedValue;
+    this.sensors[name].controller.onreading = function () {
+      for (var field in this.properties) {
+        field = this.properties[field];
+        this.parent.value[field].notifyOfExternalUpdate(this[field]);
       }
+    }
+
+    this.sensors[name].controller.onactivate = function () {
+      console.log('log: ' + this.type + ': onactivate:');
     };
-    this.sensor.onerror = function(err) {
-      console.error("error: AmbientLight: " + self.getName() + ": Fail to open: " + err);
-      self.sensor.stop();
-    }
-    this.sensor.onactivate = function() {
-      verbose("log: AmbientLight: " + self.getName() + ": onactivate:");
-    }
-    this.sensor.start();
+
+    this.sensors[name].controller.start();
   }
 
-  self.close = function () {
-    try {
-      this.sensor.stop();
-    } catch (err) {
-      return err;
-    }
-    log("log: AmbientLight: " + this.getName() + ": close:");
-  };
-
-  return this;
-}
-
-
-function ColorProperty(thing, name, value, metadata, config) {
-  var self = this;
-  name = name || 'color';
-  value = value || 0;
-  metadata = metadata || {};
-  metadata.description = metadata.description || 'Color Sensor';
-  metadata.label = metadata.label || '#rrggbb';
-  config = config || {};
-  config.frequency = config.frequency || 1;
-
-  Property.call(this, thing, name,
-                new Value(Number(value)),
-                {
-                  '@type': 'ColorProperty',
-                  description: metadata,
-                  label: metadata.label,
-                  readOnly: true,
-                  type: 'color',
-                });
-  {
-    this.period = 1000.0 / config.frequency;
-    this.config = config;
-    this.sensor = new GenericSensors.Color();
-
-    this.sensor.onreading = function() {
-      verbose("log: " + self.sensor.type + ": " + self.sensor.color);
-      var updatedValue = String(self.sensor.color);
-
-      if (updatedValue !== self.lastValue) {
-        log("log: Color: " + self.getName() + ": change: " + updatedValue);
-        self.value.notifyOfExternalUpdate(updatedValue);
-        self.lastValue = updatedValue;
-      }
-    };
-    this.sensor.onerror = function(err) {
-      console.error("error: Color: " + self.getName() + ": Fail to open: " + err);
-      self.sensor.stop();
-    }
-    this.sensor.onactivate = function() {
-      verbose("log: Color: " + self.getName() + ": onactivate:");
-    }
-    this.sensor.start();
-  }
-
-  self.close = function () {
-    try {
-      this.sensor.stop();
-    } catch (err) {
-      return err;
-    }
-    log("log: Color: " + this.getName() + ": close:");
-  };
-
-  return this;
-}
-
-
-function TemperatureProperty(thing, name, value, metadata, config) {
-  var self = this;
-  name = name || 'temperature';
-  value = value || 0;
-  metadata = metadata || {};
-  metadata.description = metadata.description || 'Temperature Sensor';
-  metadata.label = metadata.label || 'Celsius';
-  config = config || {};
-  config.frequency = config.frequency || 1;
-
-  Property.call(this, thing, name,
-                new Value(Number(value)),
-                {
-                  '@type': 'NumberProperty',
-                  description: metadata,
-                  label: metadata.label,
-                  readOnly: true,
-                  type: 'number',
-                });
-  {
-    this.period = 1000.0 / config.frequency;
-    this.config = config;
-    this.sensor = new GenericSensors.Temperature();
-
-    this.sensor.onreading = function() {
-      verbose("log: " + self.sensor.type + ": " + self.sensor.celsius);
-      var updatedValue = Number(self.sensor.celsius);
-
-      if (updatedValue !== self.lastValue) {
-        log("log: Temperature: " + self.getName() + ": change: " + updatedValue);
-        self.value.notifyOfExternalUpdate(updatedValue);
-        self.lastValue = updatedValue;
-      }
-    };
-    this.sensor.onerror = function(err) {
-      console.error("error: Temperature: " + self.getName() + ": Fail to open: " + err);
-      self.sensor.stop();
-    }
-    this.sensor.onactivate = function() {
-      verbose("log: Temperature: " + self.getName() + ": onactivate:");
-    }
-    this.sensor.start();
-  }
-
-  self.close = function () {
-    try {
-      this.sensor.stop();
-    } catch (err) {
-      return err;
-    }
-    log("log: Temperature: " + this.getName() + ": close:");
-  };
-
-  return this;
-}
-
-
-function main () {
-  var port = process.argv[2]
-      ? Number(process.argv[2])
-      : 8888;
-
-  var thing = new Thing('GenericSensors', [], 'A set of sensors');
-  thing.addProperty(new AmbientLightProperty(thing));
-  thing.addProperty(new ColorProperty(thing));
-  thing.addProperty(new TemperatureProperty(thing));
-  var server = new WebThingServer(new SingleThing(thing), port);
+  that.server = new webthing.WebThingServer(new webthing.SingleThing(that.thing),
+                                            that.port)
   process.on('SIGINT', function () {
-    for (var property in thing.properties) {
-      property = thing.properties[property];
-      if (property.close) {
-        property.close();
-      }
-    }
-    server.stop();
-  });
-  server.start();
+    that.server.stop()
+    process.exit()
+  })
+  console.log('log: Serving: http://localhost:' + that.port + '/properties')
+  that.server.start()
+
 }
 
-main();
+if (module.parent === null) {
+  start()
+}
