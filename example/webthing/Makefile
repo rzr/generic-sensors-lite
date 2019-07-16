@@ -22,7 +22,10 @@ default: help
 
 runtime?=iotjs
 topreldir?=../..
-base_url?=http://localhost:8888
+port?=8888
+base_url?=http://localhost:${port}
+
+run_args?=
 
 iotjs_modules_dir?=${CURDIR}/iotjs_modules
 example_file?=index.js
@@ -35,10 +38,10 @@ iotjs_modules_dirs+=${webthing-iotjs_dir}
 IOTJS_EXTRA_MODULE_PATH?=${topreldir}/iotjs_modules
 export IOTJS_EXTRA_MODULE_PATH
 
+
 help:
 	@echo "# Usage:"
-	@echo "# make runtime=iotjs run"
-
+	@echo "# make runtime=${runtime} start"
 
 ${webthing-iotjs_dir}:
 	git clone --recursive --depth 1 ${webthing-iotjs_url} -b ${webthing-iotjs_revision} $@
@@ -55,17 +58,24 @@ ${deploy_modules_dir}/webthing-iotjs: ${iotjs_modules_dir}/webthing-iotjs
 node_modules: package.json
 	npm install
 
+node/modules: node_modules
+	ls $<
+
+
 node/start: node_modules
 	npm start
 
-iotjs/start: ${example_file} iotjs_modules
+iotjs/start: ${example_file} ${iotjs_modules_dirs}
 	iotjs $< ${run_args}
+
+
 
 run: start
 	@echo "# $@: $^"
 
 start: ${runtime}/start
 	@echo "# $@: $^"
+
 
 modules: ${runtime}/modules
 	@echo "# $@: $^"
@@ -76,6 +86,20 @@ iotjs_modules: ${topreldir}/iotjs_modules ${iotjs_modules_dirs}
 ${topreldir}/iotjs_modules:
 	${MAKE} -C ${@D} modules
 
+iotjs/modules: ${iotjs_modules_dirs}
+	ls $<
+
+
 distclean:
 	rm -rf node_modules
 	rm -rf iotjs_modules
+
+test:
+	curl ${base_url}
+	@echo
+	curl ${base_url}/properties
+
+iotjs/devel : index.js ${iotjs_modules_dirs}
+	IOTJS_EXTRA_MODULES_PATH=${topdir} \
+	iotjs $< ${run_args}
+
