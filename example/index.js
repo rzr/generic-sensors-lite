@@ -27,7 +27,7 @@ try {
 
 var i=0;
 for (i=0; i < process.argv.length; i++) {
-  if ((process.argv.length <= 2) || (process.argv[i] === "ambiantlight")) {
+  if ((process.argv.length <= 2) || (process.argv[i] === "ambientlight")) {
     var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
     ambientlight.onreading = function() {
       console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
