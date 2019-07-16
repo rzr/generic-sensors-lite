@@ -1,6 +1,6 @@
-// -*- mode: js; js-indent-level:2; -*-
-// SPDX-License-Identifier: Apache-2.0
-/* Copyright 2018-present Samsung Electronics France
+/* -*- mode: js; js-indent-level:2;  -*-
+ * SPDX-License-Identifier: Apache-2.0
+ * Copyright 2018-present Samsung Electronics Co., Ltd. and other contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,87 +15,48 @@
  * limitations under the License.
  */
 
-'use strict';
 var console = require('console');
 
-var GenericSensors; 
+var GenericSensors = null;
 try {
-  GenericSensors = require('../generic-sensors-lite');
-} catch(err) {
-  GenericSensors = require('generic-sensors-lite');
+  GenericSensors = require('../generic-sensors-lite.js')
+} catch (err) {
+  console.log(err);
+  GenericSensors = require('generic-sensors-lite')
 }
 
-var i=0;
-for (i=0; i < process.argv.length; i++) {
-  if ((process.argv.length <= 2) || (process.argv[i] === "ambientlight")) {
-    var ambientlight = new GenericSensors.AmbientLight({ frequency: 1 });
-    ambientlight.onreading = function() {
-      console.log("log: " + ambientlight.type + ": " + ambientlight.illuminance);
+function start () {
+  this.sensors = {};
+  for (var name in Object.keys(GenericSensors)) {
+    name = Object.keys(GenericSensors)[name];
+    this.sensors[name] = {};
+    this.sensors[name].sensor = new GenericSensors[name]();
+    this.sensors[name].value = {};
+    for (var field in this.sensors[name].sensor.properties) {
+      field = this.sensors[name].sensor.properties[field];
+    }
+
+    this.sensors[name].controller = new GenericSensors[name]();
+
+    this.sensors[name].controller.onreading = function () {
+      for (var field in this.properties) {
+        field = this.properties[field];
+        console.log('{"' + field + '": ' + this[field] + '}');
+      }
+      this.stop();
+    }
+
+    this.sensors[name].controller.onactivate = function () {
+      console.log('log: ' + this.type + ': onactivate:');
     };
-    ambientlight.onerror = function(err) {
-      console.log('error: ' + ambientlight.type + ': ' + err);
-      ambientlight.stop();
-    }
-    ambientlight.onactivate = function() {
-      setTimeout(function(){ambientlight.stop();} , 3000);
-    }
-    ambientlight.start();
-    break;
+
+    this.sensors[name].controller.start();
   }
+  process.on('SIGINT', function () {
+    process.exit()
+  })
 }
 
-for (i=0; i < process.argv.length; i++) {
-  if ((process.argv.length <= 2) || (process.argv[i] === "color")) {
-    var color = new GenericSensors.Color({ frequency: 2 });
-    color.onreading = function() {
-      console.log("log: " + color.type + ": " + color.color);
-    };
-    color.onerror = function(err) {
-      console.log('error: ' + color.type + ': ' + err);
-      color.stop();
-    }
-    color.onactivate = function() {
-      setTimeout(function(){color.stop();} , 5000);
-    }
-    color.start();
-    break;
-  }
-}
-
-
-for (i=0; i < process.argv.length; i++) {
-  if ((process.argv.length <= 2) || (process.argv[i] === "temperature")) {
-    var temperature = new GenericSensors.Temperature({ frequency: 2 });
-    temperature.onreading = function() {
-      console.log("log: " + temperature.type + ": " + temperature.celsius);
-    };
-    temperature.onerror = function(err) {
-      console.log('error: ' + temperature.type + ': ' + err);
-      temperature.stop();
-    }
-    temperature.onactivate = function() {
-      setTimeout(function(){temperature.stop();} , 5000);
-    }
-    temperature.start();
-    break;
-  }
-}
-
-
-for (i=0; i < process.argv.length; i++) {
-  if ((process.argv.length <= 2) || (process.argv[i] === "geolocation")) {
-    var geolocation = new GenericSensors.Geolocation({ frequency: 2 });
-    geolocation.onreading = function() {
-      console.log("log: " + geolocation.type + ": " + geolocation.latitude + ", " + geolocation.longitude);
-    };
-    geolocation.onerror = function(err) {
-      console.log('error: ' + geolocation.type + ': ' + err);
-      geolocation.stop();
-    }
-    geolocation.onactivate = function() {
-      setTimeout(function(){geolocation.stop();} , 5000);
-    }
-    geolocation.start();
-    break;
-  }
+if (module.parent === null) {
+  start()
 }
