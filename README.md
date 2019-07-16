@@ -56,14 +56,15 @@ sudo apt-get install i2c-tools
 ```
 git clone --recursive https://github.com/rzr/generic-sensors-lite
 cd generic-sensors-lite
+
 npm install
-npm test
+npm start
+#| node example/index.js 
 #| (...)
-#| log: temperature: 28.1
-#| log: ambientlight: 51
-#| log: temperature: 28.1
-#| log: temperature: 28.1
-#| log: ambientlight: 51
+#| {"illuminance": 123.}
+#| (...)
+#| {"celsius": 42.}
+#| (...)
 (...)
 
 ```
@@ -74,11 +75,13 @@ npm test
 For constrained environments:
 
 ```
-make runtime=iotjs run
+make start
 #| (...)
 #| iotjs example/index.js 
-#| log: temperature: 31.8
-#| log: ambientlight: 16.666666666666668
+#| (...)
+#| {"illuminance": 123.}
+#| (...)
+#| {"celsius": 42.}
 #| (...)
 ```
 
@@ -102,19 +105,21 @@ Sensors are powered by webthing-iotjs and monitored on dashboard as progressive 
 Usage:
 
 ```sh
-make runtime=iotjs run
-make -C example/webthing runtime=iotjs run
+make runtime=iotjs start
+make -C example/webthing runtime=iotjs start
 #| (...)
-#| log: AmbientLight: AmbientLight: change: 28.333333333333336
-#| log: Temperature: Temperature: change: 33
+log: Serving: http://localhost:8888/properties
 #| (...)
+
+curl  http://localhost:8888/properties
+#| { (...) "illuminance":123., "celsius":42., "color":"#c0a175" (...) } 
 ```
 
 Respectively node could be supported too,
 just adapt to webthing-node API instead of webthing-iotjs (TODO):
 
 ```sh
-make -C example/webthing runtime=node run
+make -C example/webthing runtime=node start
 #| (...)
 ```
 
@@ -124,7 +129,7 @@ make -C example/webthing runtime=node run
 * https://www.npmjs.com/package/generic-sensors-lite
 * https://github.com/rzr/generic-sensors-lite
 * https://medium.com/samsung-internet-dev/sensors-webthings-bc48ad9963dd#
-* https://w3c.github.io/sensors/
+* https://w3c.github.io/sensors/#section-mock-sensor-type
 * https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
 * https://github.com/rzr/mozilla-iot-generic-sensors-adapter
 * https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/
