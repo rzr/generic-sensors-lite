@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!--
+    Copyright 2019-present Samsung Electronics France SAS, and other contributors
+  -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/rzr/aframe-webthing@v0.0.1/src/aframe-webthing.js"></script>
+    <script type="text/javascript">
+AFRAME.registerComponent('properties', {
+  schema: {
+    x: { type: 'number', default: 0},
+    y: { type: 'number', default: 0},
+    z: { type: 'number', default: 0},
+    color: { type: 'string', default: '#808080'},
+  },
+  update: function(old) {
+    let el = document.getElementById('lamp');
+    document.getElementById('bulb').setAttribute('color', this.data['color']);
+    el.setAttribute('rotation',
+      `${360 * this.data['x']} ${360 * this.data['y']} ${360 * this.data['z']}`);
+    el.object3D.scale.setScalar( this.data['illuminance'] / 100 );
+  }
+});
+    </script>
+  </head>
+  <body>
+    <a-scene
+      webthing properties
+      >
+      <a-entity id="lamp"
+                >
+        <a-sphere id="bulb"
+                  color="#FF0000"
+                  position="0 1 0"
+                  ></a-sphere>
+        <a-cylinder
+          id="base"
+          color="#777"
+          radius=".6"
+          ></a-cylinder>
+      </a-entity>
+      <a-camera
+        position="1 2 10"
+        ></a-camera>
+
+    </a-scene>
+  </body>
+</html>
