@@ -128,6 +128,9 @@ check/%: ${srcs}
 check/npm:
 	npm run lint
 
+check/iotjs:
+	@echo "TODO: Temporary disabled"
+
 check: lint check/${runtime}
 	@echo "log: $@: $^"
 
