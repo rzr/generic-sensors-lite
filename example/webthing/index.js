@@ -33,7 +33,8 @@ function start () {
   this.controller = process.argv[3]
     ? String(process.argv[3])
     : 'simulator'
-  this.thing = new webthing.Thing('GenericSensors')
+  this.thing = new webthing.Thing('urn:dev:opts:generic-sensors-1234',
+                                  'GenericSensors')
 
   this.sensors = {};
   for (var name in Object.keys(GenericSensors)) {
