@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/rzr/generic-sensors-lite",
   "dependencies": {
+    "aframe-webthing": "0.0.2",
     "webthing-iotjs": "^0.11.3-0"
   },
   "iotjs": {
