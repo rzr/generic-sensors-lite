@@ -28,27 +28,32 @@ function start () {
   this.sensors = {};
   for (var name in Object.keys(GenericSensors)) {
     name = Object.keys(GenericSensors)[name];
-    this.sensors[name] = {};
-    this.sensors[name].sensor = new GenericSensors[name]();
-    this.sensors[name].value = {};
-    for (var field in this.sensors[name].sensor.properties) {
-      field = this.sensors[name].sensor.properties[field];
-    }
-
-    this.sensors[name].controller = new GenericSensors[name]();
-
-    this.sensors[name].controller.onreading = function () {
-      for (var field in this.properties) {
-        field = this.properties[field];
-        console.log('{"' + field + '": ' + this[field] + '}');
+    try {
+      this.sensors[name] = {};
+      this.sensors[name].sensor = new GenericSensors[name]();
+      this.sensors[name].value = {};
+      for (var field in this.sensors[name].sensor.properties) {
+        field = this.sensors[name].sensor.properties[field];
       }
+
+      this.sensors[name].controller = new GenericSensors[name]();
+
+      this.sensors[name].controller.onreading = function () {
+        for (var field in this.properties) {
+          field = this.properties[field];
+          console.log('{"' + field + '": ' + this[field] + '}');
+        }
+      }
+
+      this.sensors[name].controller.onactivate = function () {
+        console.log('log: ' + this.type + ': onactivate:');
+      };
+
+      this.sensors[name].controller.start();
+    } catch(err) {
+      console.log('error: sensor: ' + name);
+      console.log(err);
     }
-
-    this.sensors[name].controller.onactivate = function () {
-      console.log('log: ' + this.type + ': onactivate:');
-    };
-
-    this.sensors[name].controller.start();
   }
   process.on('SIGINT', function () {
     process.exit()
