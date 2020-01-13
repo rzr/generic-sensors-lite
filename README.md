@@ -97,7 +97,13 @@ node lib/ambientlight "{ \"controller\": \"bh1750\"}"
 
 ### DEMO: ###
 
-[![web-of-things-agriculture-20180712rzr.webm](https://media.giphy.com/media/tKyrtKMc77iV9QUCrP/giphy.gif)](https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.webm "Video Demo")
+[![web-of-things-agriculture-20180712rzr.webm
+](
+https://camo.githubusercontent.com/8c693d7e5d3950831e7f7fd62aa1dc790a6100f8/68747470733a2f2f732d6f70656e736f757263652e6f72672f77702d636f6e74656e742f75706c6f6164732f323031382f30372f7765622d6f662d7468696e67732d6167726963756c747572652d3230313830373132727a722e676966#/generic-sensors-lite.gif
+)](
+https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.webm
+"Video Demo"
+)
 
 An extra example is provided to show integration in Mozilla's Thing project.
 Sensors are powered by webthing-iotjs and monitored on dashboard as progressive web app (PWA).
