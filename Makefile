@@ -44,8 +44,8 @@ bmp085-sensor_revision?=v0.0.6-1
 color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
 color-sensor-js_revision?=v0.0.9
 
-iotjs_modules_dirs+=${iotjs_modules_dir}/bh1750
-iotjs_modules_dirs+=${iotjs_modules_dir}/bmp085-sensor
+iotjs_modules_dirs+=${iotjs_modules_dir}/@abandonware/bh1750
+iotjs_modules_dirs+=${iotjs_modules_dir}/@abandonware/bmp085-sensor
 iotjs_modules_dirs+=${iotjs_modules_dir}/color-sensor-js
 
 IOTJS_EXTRA_MODULE_PATH?=.
