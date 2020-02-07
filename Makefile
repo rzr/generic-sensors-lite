@@ -41,8 +41,8 @@ bh1750_url?=https://github.com/abandonware/bh1750
 bh1750_revision?=v0.0.7-0
 bmp085-sensor_url?=https://github.com/abandonware/bmp085-sensor
 bmp085-sensor_revision?=v0.0.6-1
-color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
-color-sensor-js_revision?=v0.0.9
+color-sensor-js_url?=https://github.com/rzr/color-sensor-js
+color-sensor-js_revision?=v0.0.11
 
 iotjs_modules_dirs+=${iotjs_modules_dir}/@abandonware/bh1750
 iotjs_modules_dirs+=${iotjs_modules_dir}/@abandonware/bmp085-sensor
