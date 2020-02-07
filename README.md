@@ -27,7 +27,9 @@ but following sensors can be plugged on pins of your favorite single board compu
 * BH1650: for measuring illuminance  (i2c=0x23)
 * BMPx80: for measuring temperature, or any compatible sensor (ie: BMP180, i2c=0x77)
 * TCS34725: for measuring colors (i2c=0x29)
-
+* HTU21D: for measuring humidity (i2c=0x40) [Buy](
+https://www.amazon.com/HiLetgo%C2%AE-Temperature-Humidity-1-5V-3-6V-Compatible/dp/B00XR7CR1I/ref=rzr-21#
+)
 
 #### SETUP: ####
 
@@ -45,7 +47,7 @@ sudo apt-get install i2c-tools
 #| 10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 #| 20: -- -- -- 23 -- -- -- -- -- 29 -- -- -- -- -- -- 
 #| 30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-#| 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+#| 40: 40 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 #| 50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 #| 60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 #| 70: -- -- -- -- -- -- -- 77
