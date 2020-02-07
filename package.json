@@ -13,6 +13,7 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
+    "@abandonware/htu21d-i2c": "^0.1.1-0",
     "color-sensor-js": "0.0.11"
   },
   "optionalDependencies": {
