@@ -39,9 +39,9 @@ function start () {
       this.sensors[name].controller = new GenericSensors[name]();
 
       this.sensors[name].controller.onreading = function () {
-        for (var field in this.properties) {
-          field = this.properties[field];
-          console.log('{"' + field + '": ' + this[field] + '}');
+        for (var property in this.properties) {
+          property = this.properties[property];
+          console.log('{"' + property + '": ' + this[property] + '}');
         }
       }
 
