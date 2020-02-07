@@ -42,14 +42,14 @@ function start () {
     this.sensors[name] = {};
     this.sensors[name].sensor = new GenericSensors[name]();
     this.sensors[name].value = {};
-    for (var field in this.sensors[name].sensor.properties) {
-      field = this.sensors[name].sensor.properties[field];
-      this.sensors[name].value[field] = new webthing.Value();
+    for (var property in this.sensors[name].sensor.properties) {
+      property = this.sensors[name].sensor.properties[property];
+      this.sensors[name].value[property] = new webthing.Value();
 
       this.thing.addProperty(new webthing.Property(
         this.thing,
-        field,
-        this.sensors[name].value[field],
+        property,
+        this.sensors[name].value[property],
         {
           readOnly: true,
         }
