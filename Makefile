@@ -38,11 +38,11 @@ export NODE_PATH
 iotjs_modules_dir?=${CURDIR}/iotjs_modules
 
 bh1750_url?=https://github.com/abandonware/bh1750
-bh1750_revision?=v0.0.7-0
+bh1750_revision?=v0.0.7-2
 bmp085-sensor_url?=https://github.com/abandonware/bmp085-sensor
-bmp085-sensor_revision?=v0.0.6-1
+bmp085-sensor_revision?=v0.0.6-2
 color-sensor-js_url?=https://github.com/SamsungInternet/color-sensor-js
-color-sensor-js_revision?=v0.0.9
+color-sensor-js_revision?=v0.0.11
 htu21d-i2c_url?=https://github.com/abandonware/node-htu21d
 htu21d-i2c_revision?=v0.1.1-0
 
