@@ -74,6 +74,17 @@ npm start
 
 #### USING IOT.JS ####
 
+First install IoT.js as explained at:
+
+-   <https://github.com/rzr/webthing-iotjs/wiki/IotJs>
+
+For Debian and derived (Ubuntu, Rasbian, Armbian):
+
+```sh
+curl https://raw.githubusercontent.com/rzr/iotjs-express/master/extra/tools/iotjs/setup.sh \
+| bash -x -e
+```
+
 For constrained environments:
 
 ```
