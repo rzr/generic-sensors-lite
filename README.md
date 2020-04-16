@@ -6,6 +6,7 @@
 [![Build Status](https://api.travis-ci.org/rzr/generic-sensors-lite.svg?branch=master)](https://travis-ci.org/rzr/generic-sensors-lite)
 [![dependencies Status](https://david-dm.org/rzr/generic-sensors-lite/status.svg)](https://david-dm.org/rzr/generic-sensors-lite)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frzr%2Fgeneric-sensors-lite?ref=badge_shield)
+[![IRC Channel](https://img.shields.io/badge/chat-on%20freenode-brightgreen.svg)](https://kiwiirc.com/client/irc.freenode.net/#iot)
 
 [![NPM](https://nodei.co/npm/generic-sensors-lite.png)](https://npmjs.org/package/generic-sensors-lite)
 
