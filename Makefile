@@ -17,7 +17,7 @@
 # limitations under the License.
 #}
 
-default: all
+default: help all
 	@echo "log: $@: $^"
 
 
@@ -56,6 +56,9 @@ export IOTJS_EXTRA_MODULE_PATH
 
 help:
 	@echo "## Usage: "
+	@echo "# make start # Run application"
+	@echo "# make lint # Fix style"
+	@echo "# make rule/npm/version/X.Y.Z # Release version"
 
 all: build
 	@echo "log: $@: $^"
