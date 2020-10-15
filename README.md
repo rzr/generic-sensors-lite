@@ -146,6 +146,7 @@ make -C example/webthing runtime=node start
 
 ## RESOURCES: ##
 
+* <https://purl.org/rzr/sensors>
 * <https://www.npmjs.com/package/generic-sensors-lite/>
 * <https://github.com/rzr/generic-sensors-lite/>
 * <https://libraries.io/npm/generic-sensors-lite/>
@@ -153,8 +154,8 @@ make -C example/webthing runtime=node start
 * <https://medium.com/samsung-internet-dev/sensors-webthings-bc48ad9963dd#>
 * <https://w3c.github.io/sensors/#section-mock-sensor-type>
 * <https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs>
-* <https://github.com/rzr/mozilla-iot-generic-sensors-adapter/>
-* <https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/>
+* <https://github.com/rzr/generic-sensors-webthing/>
+* <https://web.archive.org/web/20181208022842/https://s-opensource.org/2018/04/25/mozilla-iot-generic-sensors/>
 * <https://github.com/miroRucka/bh1750/pull/17>
 * <https://github.com/dbridges/bmp085-sensor/pull/7>
 * <https://github.com/samsunginternet/color-sensor-js>
