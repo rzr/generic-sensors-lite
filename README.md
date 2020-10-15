@@ -119,7 +119,7 @@ https://player.vimeo.com/video/279677314#web-of-things-agriculture-20180712rzr.w
 "Video Demo"
 )
 
-An extra example is provided to show integration in Mozilla's Thing project.
+An extra example is provided to show integration in WebThings project.
 Sensors are powered by webthing-iotjs and monitored on dashboard as progressive web app (PWA).
 
 Usage:
