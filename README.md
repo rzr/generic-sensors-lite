@@ -146,7 +146,9 @@ make -C example/webthing runtime=node start
 
 ## RESOURCES: ##
 
+* <https://purl.org/rzr/>
 * <https://purl.org/rzr/sensors>
+* <http://rzr.github.io/rzr-presentations/docs/sensors-webthings>
 * <https://www.npmjs.com/package/generic-sensors-lite/>
 * <https://github.com/rzr/generic-sensors-lite/>
 * <https://libraries.io/npm/generic-sensors-lite/>
