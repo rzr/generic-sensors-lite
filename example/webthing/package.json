@@ -1,6 +1,6 @@
 {
   "name": "generic-sensors-lite-webthing",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "WebOfThing Sensor example",
   "main": "index.js",
   "scripts": {
