@@ -13,7 +13,7 @@
     "url": "git+https://github.com/rzr/generic-sensors-lite.git"
   },
   "dependencies": {
-    "color-sensor-js": "0.0.13"
+    "color-sensor-js": "0.0.14"
   },
   "optionalDependencies": {
     "@abandonware/bh1750": "0.0.7-3",
